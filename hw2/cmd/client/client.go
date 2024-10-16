@@ -5,14 +5,16 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"hw2/pkg/model"
+	"hw2/internal/model"
 	"io"
 	"net/http"
 	"time"
 )
 
+var Addr = "http://localhost:8080/"
+
 func VersionRequest() {
-	request, err := http.NewRequest("GET", "http://localhost:8080/version", nil)
+	request, err := http.NewRequest("GET", Addr+"version", nil)
 	if err != nil {
 		fmt.Printf("Error in creating request: %s", err)
 		return
@@ -40,7 +42,7 @@ func DecodeBase64Request(base64String string) {
 		fmt.Printf("Error in creating json: %s", err)
 		return
 	}
-	request, err := http.NewRequest("POST", "http://localhost:8080/decode", bytes.NewBuffer(jsonBody))
+	request, err := http.NewRequest("POST", Addr+"decode", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		fmt.Printf("Error in creating request: %s", err)
 		return
@@ -71,7 +73,7 @@ func TimeoutRequest() {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
-	request, err := http.NewRequestWithContext(ctx, "GET", "http://localhost:8080/hard-op", nil)
+	request, err := http.NewRequestWithContext(ctx, "GET", Addr+"hard-op", nil)
 	if err != nil {
 		fmt.Printf("Error in creating request: %s", err)
 		return

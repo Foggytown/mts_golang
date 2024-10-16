@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"hw2/pkg/model"
+	"hw2/internal/model"
 	"math/rand"
 	"net/http"
 	"time"
@@ -36,7 +36,6 @@ func DecodeHandler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Invalid request body", http.StatusBadRequest)
 			return
 		}
-		//fmt.Printf("Encoded string: %s\n", req.Base64String)
 
 		data, err := base64.StdEncoding.DecodeString(req.Base64String)
 		if err != nil {
@@ -44,7 +43,6 @@ func DecodeHandler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Invalid base64 string", http.StatusBadRequest)
 			return
 		}
-		//fmt.Printf("Decoded string: %s\n", string(data))
 
 		res := model.DecodeResp{DecodeString: string(data)}
 		err = json.NewEncoder(w).Encode(res)
@@ -65,16 +63,12 @@ func HardOpHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		dur := time.Duration(10 + rand.Intn(11))
-		//fmt.Printf("Went sleeping for %d seconds\n", dur)
 		time.Sleep(dur * time.Second)
-		//fmt.Printf("Woke up\n")
 
 		if rand.Intn(2) == 0 {
-			//fmt.Println("Randomed 200 code")
 			return
 		} else {
 			code := 500 + rand.Intn(12)
-			//fmt.Printf("Randomed 500 code:%d\n", code)
 			http.Error(w, "Random 500 code", code)
 			return
 		}
