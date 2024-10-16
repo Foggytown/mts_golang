@@ -1,6 +1,8 @@
 package searcher_slice
 
-import "hw1/library/book"
+import (
+	"hw1/internal/library/book"
+)
 
 type SearcherSlice struct {
 	dict map[string]int

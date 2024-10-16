@@ -1,6 +1,8 @@
 package searcher
 
-import "hw1/library/book"
+import (
+	"hw1/internal/library/book"
+)
 
 type Searcher interface {
 	Search(id string) (book.Book, bool)

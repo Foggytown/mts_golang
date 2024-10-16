@@ -1,6 +1,8 @@
 package searcher_map
 
-import "hw1/library/book"
+import (
+	"hw1/internal/library/book"
+)
 
 type SearcherMap struct {
 	data map[string]book.Book

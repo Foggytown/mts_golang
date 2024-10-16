@@ -1,3 +1,3 @@
 First hw for go course 
 
-run: `go run main.go`
+run: `go run cmd/library_app/main.go`

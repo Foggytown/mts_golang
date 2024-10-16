@@ -1,7 +1,9 @@
 package library
 
-import "hw1/library/book"
-import "hw1/library/searcher"
+import (
+	"hw1/internal/library/book"
+	"hw1/internal/library/searcher"
+)
 
 type Library interface {
 	Search(name string) (book.Book, bool)
